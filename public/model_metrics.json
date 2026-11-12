@@ -1,6 +1,6 @@
 {
   "model_type": "Gaussian Naive Bayes",
-  "training_date": "2026-11-12 09:51:07",
+  "training_date": "2026-11-12 10:27:14",
   "dataset_size": 1000,
   "train_size": 800,
   "test_size": 200,

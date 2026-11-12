@@ -195,20 +195,18 @@ try:
 except Exception as e:
     print(f"⚠️  Could not save confusion matrix plot: {e}")
 
-# 9. Export to ONNX
+# 9. Export to ONNX dengan output tensor (bukan zipmap/dict)
 print(f"\n🔄 Converting model to ONNX format...")
+from skl2onnx.common.data_types import FloatTensorType, StringTensorType
+
 initial_type = [('float_input', FloatTensorType([None, 8]))]
 
+# PENTING: zipmap=False agar output tensor biasa, bukan dictionary
 onnx_model = convert_sklearn(
     model,
     initial_types=initial_type,
     target_opset=12,
-    options={
-        id(model): {
-            'zipmap': False,
-            'nocl': False
-        }
-    }
+    options={id(model): {'zipmap': False}}
 )
 
 with open("burnout_model_naive_bayes.onnx", "wb") as f:

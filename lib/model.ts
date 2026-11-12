@@ -98,12 +98,9 @@ export async function predictBurnoutRisk(
   try {
     const session = await loadModel();
 
-    // The model was trained with task_completion_rate expressed as a
-    // percentage (0-100), while the API accepts a fraction (0-1).
-    const taskCompletionRate =
-      input.task_completion_rate <= 1
-        ? input.task_completion_rate * 100
-        : input.task_completion_rate;
+    // The model was trained with task_completion_rate as a fraction (0-1),
+    // which matches what the API accepts.
+    const taskCompletionRate = input.task_completion_rate;
 
     // Prepare input tensor
     const inputArray = new Float32Array([
@@ -124,14 +121,16 @@ export async function predictBurnoutRisk(
 
     const results = await session.run(feeds, session.outputNames);
 
-    // Find the probabilities tensor regardless of its output name.
+    // The model outputs two tensors:
+    // 1. 'label' - string label (we ignore this)
+    // 2. 'probabilities' - float32 array [High, Low, Medium] in alphabetical order
     const outputTensor =
-      results[session.outputNames[0]] ??
       results.probabilities ??
-      results.output;
+      results[session.outputNames[1]] ??
+      results[session.outputNames[0]];
 
     if (!outputTensor || !outputTensor.data) {
-      throw new Error("Model did not return a valid output tensor");
+      throw new Error("Model did not return a valid probability tensor");
     }
 
     const probabilities = toProbabilities(
