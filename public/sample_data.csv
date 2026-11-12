@@ -1,0 +1,11 @@
+employee_id,is_weekend,work_hours,screen_time_hours,meetings_count,breaks_taken,after_hours_work,sleep_hours,task_completion_rate
+EMP001,0,8,6,3,2,0,7,0.85
+EMP002,1,4,3,1,3,0,8,0.90
+EMP003,0,10,9,5,1,1,6,0.75
+EMP004,0,9,8,4,2,1,6.5,0.80
+EMP005,1,3,2,0,4,0,9,0.95
+EMP006,0,11,10,6,1,1,5,0.70
+EMP007,0,7,5,2,3,0,8,0.88
+EMP008,1,5,4,1,3,0,7.5,0.92
+EMP009,0,12,11,7,0,1,5.5,0.65
+EMP010,0,8.5,7,3,2,0,7,0.83

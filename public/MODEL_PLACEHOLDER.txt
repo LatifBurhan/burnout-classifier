@@ -1,0 +1,11 @@
+PENTING: Letakkan file model ONNX Anda di sini!
+
+File yang diperlukan:
+- burnout_model.onnx
+
+Model ini harus sudah di-training sebelumnya dengan format:
+- Input: 8 features (is_weekend, work_hours, screen_time_hours, meetings_count, breaks_taken, after_hours_work, sleep_hours, task_completion_rate)
+- Output: 3 classes (Low, Medium, High)
+
+Alternatif lokasi:
+Anda juga bisa meletakkan model di folder lib/burnout_model.onnx

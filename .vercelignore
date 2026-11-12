@@ -1,0 +1,10 @@
+node_modules
+.next
+.git
+*.py
+*.pyc
+__pycache__
+confusion_matrix.png
+burnout_training_data.csv
+*.log
+.DS_Store
